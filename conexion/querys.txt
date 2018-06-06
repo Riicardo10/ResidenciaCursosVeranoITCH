@@ -1,0 +1,28 @@
+		//$id = mysqli_real_escape_string( $conexion, "2 OR '1'='1'" );
+				$id = mysqli_real_escape_string( $conexion, "2" );
+		// ELIMINACION
+		//$consulta_sql = "DELETE FROM tabla WHERE id = $id";
+		//$consulta_sql = "INSERT INTO tabla VALUES ( 1, 'Ricardo' );";
+		//$consulta_sql = "INSERT INTO tabla VALUES ( 2, 'Daniel' );";
+		//if( mysqli_query( $conexion, $consulta_sql ) ){
+		/*mysqli_query( $conexion, $consulta_sql );
+		if( mysqli_affected_rows( $conexion ) > 0 )
+			echo "Eliminados";
+		else
+			echo "Nada";
+		mysqli_close( $conexion );*/
+
+		// SELECT
+		// $sql = "select*from tabla";
+		// $result = $conexion->query($sql);
+
+		// if ($result->num_rows > 0) {
+  //   			while($row = $result->fetch_assoc()) {
+  //       			echo "id: " . $row["id"]. " - Nombre: " . $row["nombre"] . "<br>";
+  //   			}
+  //   			while($row = $result->fetch_array()) {
+  //       			echo "id: " . $row[0]. " - Nombre: " . $row[1] . "<br>";
+  //   			}
+		// } else {
+  //   			echo "0 results";
+		// }

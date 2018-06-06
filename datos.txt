@@ -1,0 +1,14 @@
+admin
+	gestion 	materias
+				maestros
+					jefes de academia
+				carreras
+				coordinadores
+
+coordinador de estudiantes
+	selecciona las materias
+	agrega	alumnos a materias
+	
+jefes de academia
+	seleccionan al maestro para cada materia
+

@@ -1,0 +1,34 @@
+1
+Ricardo Daniel
+Abrajan Flores
+riicardo@hotmail.com
+7471218435
+Ingeniería en sistemas computacionales
+
+2
+Erick
+Gonzáles Acevedo
+erick@hotmail.com
+7471001945
+Contador público
+
+3
+Francisco
+Blanco Romero
+francisco@hotmail.com
+7473738829
+Gestión empresarial
+
+4
+Oscar Jair
+Bernabe Aureoles
+oscar@hotmail.com
+7541772899
+Ingeniería civil
+
+5
+Samuel
+Molina Derramona
+samuel@hotmail.com
+7566473899
+Ingeniería informática

@@ -1,0 +1,34 @@
+1
+Ruben de Dios
+Meza Castro
+ruben@hotmail.com
+7471218435
+Ciencias de la tierra
+
+2
+Crispin Geovany
+Pastor Solache
+crispin@hotmail.com
+7471001945
+Ciencias básicas
+
+3
+Angeles 
+Cruz Manjarrez
+angeles@hotmail.com
+7473738829
+Sistemas y computación
+
+4
+Margot Olimpia
+Espinobarrios Mendoza
+margot@hotmail.com
+7541772899
+Ciencias administrativas
+
+5
+Maria Ester
+Duran Trujillo
+ester@hotmail.com
+7566473899
+Ciencias económicas

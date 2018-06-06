@@ -1,0 +1,42 @@
+<script>
+	var bandera = true;
+	function confirmar ( ) {
+		confirm("Seguro que desea eliminar el área seleccionada?") ? bandera = true : bandera = false;
+	}
+</script>
+
+
+
+<!-- DE -> JS A PHP
+DE -> PHP A JS
+http://jhosuepardo.com/diseno-web/como-pasar-variables-de-javascript-a-php-y-viceversa/ -->
+
+
+
+
+<div class="tab-content">
+					<div id="general" class="tab-pane fade in active">
+						
+					</div>
+					<div id="usuarios" class="tab-pane fade">
+						usuarios
+					</div>
+					<div id="profesores" class="tab-pane fade">
+						<?php	require '../profesores/profesores.php'; ?>
+					</div>
+					<div id="carreras" class="tab-pane fade">
+						<?php	require '../carreras/carreras.php'; ?>
+					</div>
+					<div id="areas" class="tab-pane fade">
+						
+					</div>
+					<div id="coordinadores" class="tab-pane fade">
+						<?php	require '../estudiantes/estudiantes.php'; ?>
+					</div>
+					<div id="materias" class="tab-pane fade">
+						<?php	require '../materias/materias.php'; ?>
+					</div>
+					<div id="academicos" class="tab-pane fade">
+						academicos
+					</div>
+				</div>
