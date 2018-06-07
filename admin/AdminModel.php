@@ -38,6 +38,9 @@
 			// jefe
 			$sql_jefe = "SELECT * FROM usuarios_jefes_departamento WHERE usuario = '$usuario' AND contrasenia = '$contrasenia'";
 			$result_jefe = $conexion->query($sql_jefe);
+			// subdirector
+			$sql_sub = "SELECT * FROM subdirectores WHERE email = '$usuario' AND contrasenia = '$contrasenia'";
+			$result_sub = $conexion->query($sql_sub);
 
 			session_start();
 			$_SESSION["sesion"] = $usuario;
@@ -50,6 +53,9 @@
 			}
 			else if ($result_jefe->num_rows > 0) {
 				header("Refresh:0; url=../jefes/inicio.php");
+			}
+			else if ($result_sub->num_rows > 0) {
+				header("Refresh:0; url=../subdirector/inicio.php");
 			}
 			else{
 				echo "<script>mensajeError( 'Error!', 'Datos incorrectos. Verifícalos!' );</script>";

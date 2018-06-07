@@ -41,16 +41,12 @@
 							<input type="hidden" name="txt_id_carrera" style="width: 200px; font-size: 20px" value="<?php echo $id_carrera; ?>" readonly>
 							<input type="hidden" name="txt_nombre_carrera" style="width: 200px; font-size: 20px" value="<?php echo $nombre_carrera; ?>" readonly>
 							<div class="row form-group text-center">
+								<div class="col-xs-2"></div>
 								<div class="col-xs-4">
 									<label for="txt_clave" style="text-align: left; font-size: 20px;width: 200px;">Clave:</label>
 									<input type="text" name="txt_clave" style="width: 200px; font-size: 20px" value="<?php echo $id_materia_solicitada; ?>" readonly>
 								</div>
-								<div class="col-xs-1"></div>
-								<div class="col-xs-2" style="">
-									<label for="txt_status" style="text-align: left; font-size: 20px;width: 200px;">Estado:</label>
-									<input type="checkbox" name="txt_status" value="1" class="form-control" id="txt_status">Aprobada / Rechazada
-								</div>
-								<div class="col-xs-1"></div>
+								
 								<div class="col-xs-4">
 									<label for="txt_nombre_materia" style="text-align: left; font-size: 20px;width: 200px;">Materia:</label>
 									<input type="text" name="txt_nombre_materia" style="font-size: 20px" value="<?php echo $nombre_materia; ?>" readonly>

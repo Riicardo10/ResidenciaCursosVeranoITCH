@@ -21,6 +21,9 @@
 	<div class='tab-pane' id='materias' role='tabpanel' aria-labelledby='materias-tab'>
 		<?php	require '../materias/materias.php'; ?>
 	</div>
+	<div class='tab-pane' id='subdirector' role='tabpanel' aria-labelledby='subdirector-tab'>
+		<?php	require '../subdirector/subdirector.php'; ?>
+	</div>
 	<div class='tab-pane' id='jefes-depto' role='tabpanel' aria-labelledby='jefes-depto-tab'>
 		<?php	require '../jefes/jefes.php'; ?>
 	</div>

@@ -277,6 +277,26 @@
 			mysqli_close( $conexion );
 			return "--";
 		}
+		function actualizarContraseniaCoordinador ( $usuario, $contrasenia, $contrasenia_2 ) {
+			if( $contrasenia == $contrasenia_2 ){
+				require '../conexion/conexion_mysqli.php';
+				$sql = "UPDATE usuarios_coordinadores SET contrasenia = '$contrasenia' WHERE no_control_coordinador = '$usuario'";
+				mysqli_query( $conexion, $sql );
+				if( mysqli_affected_rows( $conexion ) > 0 ){
+					echo "<script>mensajeExitoso( 'Bieen!', 'Se actualizó la cuenta del coordinador. Inicia sesión de nuevo por favor' );</script>";
+					header("Refresh:1; url=../admin/cerrar_sesion.php");
+				}
+				else{
+					echo "<script>mensajeError( 'Vaya!', 'No se realizaron cambios en la cuenta del coordinador.' );</script>";
+					header("Refresh:1; url=./inicio.php");
+				}
+				mysqli_close( $conexion );
+			}
+			else{
+				echo "<script>mensajeError( 'Upsss!', 'Verifica contraseñas ingresadas.' );</script>";
+				header("Refresh:1; url=./inicio.php");
+			}
+		}
 	}
 	// FUERA DE CLASE
 	function getListaAlumnosMateria ( $clave_carrera ) { 
@@ -347,6 +367,17 @@
 		echo "$id_materia_solicitada Materia: $id_materia $nombre_materia <br>";
 		$coordinador_obj = new CoordinadorModel; 
 		$coordinador_obj->agregarEstudiante( $no_control, $nombre, $apellido_paterno, $apellido_materno, $email, $telefono, $id_materia_solicitada, $id_materia );		*/
+	}
+
+
+	if(isset($_POST['btt_configurar'])){
+		$user = $_POST['txt_no_control'];
+		$contrasenia_1 = $_POST['txt_contrasenia'];
+		$contrasenia_2 = $_POST['txt_contrasenia_2'];
+		$coordinador_obj = new CoordinadorModel; 
+		$coordinador_obj->actualizarContraseniaCoordinador($user, $contrasenia_1, $contrasenia_2);
+		
+		
 	}
 ?> 
 

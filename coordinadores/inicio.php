@@ -30,6 +30,7 @@
 			<h4 style="text-align: center;">
 				<?php 
 					echo "Bienvenido coordinador: " . $usuario->nombre . " " . $usuario->apellido_paterno . " " . $usuario->apellido_materno; 
+					// $usuario->no_control
 				?>
 				<a style="float: right;" href="../admin/cerrar_sesion.php">Cerrar sesion</a>	
 			</h4>
@@ -37,6 +38,10 @@
 			<div class="row">
 				<div class="col-xs-2"></div>
 				<div class="col-xs-8">
+					<form action="configuracion.php" method="POST">
+						<input type="hidden" value="<?php echo $usuario->no_control ?>" name="txt_no_control">
+						<input type="submit" value="Configurar cuenta" class="btn-link">
+					</form>
 					<a href="materias_solicitadas.php">Materias solicitadas</a>
 					<hr>
 					<div class="col panel panel-success col-lg-offset-0">

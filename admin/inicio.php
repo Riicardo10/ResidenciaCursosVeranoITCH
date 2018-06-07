@@ -34,6 +34,9 @@
 						<a class="nav-link" id="materias-tab" data-toggle="tab" href="#materias" role="tab" aria-controls="materias" aria-selected="false">Materias</a>
 					</li>
 					<li class="nav-item"> 
+						<a class="nav-link" id="subdirector-tab" data-toggle="tab" href="#subdirector" role="tab" aria-controls="subdirector" aria-selected="false">Subdirector</a>
+					</li>
+					<li class="nav-item"> 
 						<a class="nav-link" id="jefes-depto-tab" data-toggle="tab" href="#jefes-depto" role="tab" aria-controls="jefes-depto" aria-selected="false">Jefes de departamento</a>
 					</li>
 					<li class="nav-item"> 

@@ -4,17 +4,20 @@
 			header("location: ../");
 ?>
 <?php
-	require '../jefes/JefeModel.php';
-	$jefe = new JefeModel;
+	require '../subdirector/SubdirectorModel.php';
+	$sub = new SubdirectorModel;
+	$usuario = $sub->getSubdirector($_SESSION['sesion']);
+?>
+<?php
 	require '../carreras/CarreraModel.php';
 	$carreras = new CarreraModel; 
 	$listaCarreras = $carreras->getListaCarreras();
-	$usuario = $jefe->getJefe($_SESSION['sesion']);
+	
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Carrera</title>
+		<title>Inicio</title>
 		<?php	require '../styles-scripts.php';?>
 		<style>
 			.carrera{
@@ -29,7 +32,8 @@
 
 			<h4 style="text-align: center;">
 				<?php 
-					echo "Bienvenido jefe académico: " . $usuario->nombre . " " . $usuario->apellido_paterno . " " . $usuario->apellido_materno; 
+					echo "Bienvenido subdirector: " . $usuario->nombre . " " . $usuario->apellido_paterno . " " . $usuario->apellido_materno; 
+					// $usuario->no_control
 				?>
 				<a style="float: right;" href="../admin/cerrar_sesion.php">Cerrar sesion</a>	
 			</h4>
@@ -38,18 +42,19 @@
 				<div class="col-xs-2"></div>
 				<div class="col-xs-8">
 					<form action="configuracion.php" method="POST">
-						<input type="hidden" value="<?php echo $usuario->clave ?>" name="txt_no_control">
+						<input type="hidden" value="<?php echo $usuario->email ?>" name="txt_email">
 						<input type="submit" value="Configurar cuenta" class="btn-link">
 					</form>
 					<hr>
 					<div class="col panel panel-success col-lg-offset-0">
 						<div class="panel-heading text-center">
-							<h3 >Selecciona el plan de estudios de la carrera</h3>
+							<?php $anio = Date('Y');?>
+							<h3 >Verano <?php echo  $anio; ?> </h3>
 						</div>
 						<div class="panel-body ">
 							<table class="table">
 									<tr style="text-align: center;">
-										<td><b>Plan de estudios</b></td>
+										<td><b>Selecciona plan de estudios</b></td>
 									</tr>
 								<tbody>
 									<?php  
@@ -57,9 +62,9 @@
 											while($row = $listaCarreras->fetch_assoc()) { ?>
 												<tr style="text-align: center;">
 													<td>
-														 <form action="../jefes/lista_materias.php" method="GET">
-														 	<input type="hidden" name="id" value="<?php echo $row['clave']; ?>">
-														 	<input type="hidden" name="nombre" value="<?php echo $row['carrera']; ?>">
+														 <form action="../subdirector/materias_solicitadas_por_carrera.php" method="GET">
+														 	<input type="hidden" name="txt_carrera_id" value="<?php echo $row['clave']; ?>">
+														 	<input type="hidden" name="txt_carrera_nombre" value="<?php echo $row['carrera']; ?>">
 														 	<input name="btt_carrera" type="submit" class="carrera btn btn-default" value="<?php echo $row['carrera']; ?>">
 														</form>
 													</td>

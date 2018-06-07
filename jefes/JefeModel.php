@@ -68,17 +68,17 @@
 			}
 			mysqli_close( $conexion );
 		}
-		function asignarProfesorAMateria ( $id_materia_solicitada, $id_profesor, $status, $id_carrera, $nombre_carrera ) {
+		function asignarProfesorAMateria ( $id_materia_solicitada, $id_profesor, $id_carrera, $nombre_carrera ) {
 			require '../conexion/conexion_mysqli.php';
-			$sql = "UPDATE materias_solicitadas SET clave_profesor = $id_profesor, aprobada = '$status' WHERE id = '$id_materia_solicitada'";
+			$sql = "UPDATE materias_solicitadas SET clave_profesor = $id_profesor  WHERE id = '$id_materia_solicitada'";
 			mysqli_query( $conexion, $sql );
 			if( mysqli_affected_rows( $conexion ) > 0 ){
 				echo "<script>mensajeExitoso( 'Bieen!', 'Registro modificado.' );</script>";
 				header("Refresh:1; url=../jefes/lista_materias.php?id=$id_carrera&nombre=$nombre_carrera");
 			}
 			else{
-				echo "<script>mensajeError( 'Upsss!', 'No se dió de alta el registro.' );</script>";
-				header("Refresh:1; url=../jefe/inicio.php");
+				echo "<script>mensajeError( 'Upsss!', 'No se modifico el registro.' );</script>";
+				header("Refresh:1; url=../jefes/inicio.php");
 			}
 			mysqli_close( $conexion );
 		}
@@ -139,8 +139,7 @@
 				  WHERE MATERIAS_SOLICITADAS.clave_materia = MATERIAS.clave 
 				  AND MATERIAS_SOLICITADAS.no_control_coordinador = COORDINADORES.no_control  
 				  AND clave_carrera = '$id_carrera' 
-				  AND anio = '2018';
-";
+				  AND anio = '$anio';";
 			$result = $conexion->query($sql);
 			if ($result->num_rows > 0) {
 				return $result;
@@ -169,6 +168,26 @@
 				header("Refresh:2; url=../jefes/agregar.php");
 			}
 			mysqli_close( $conexion );
+		}
+		function actualizarContraseniaJefe ( $usuario, $contrasenia, $contrasenia_2 ) {
+			if( $contrasenia == $contrasenia_2 ){
+				require '../conexion/conexion_mysqli.php';
+				$sql = "UPDATE usuarios_jefes_departamento SET contrasenia = '$contrasenia' WHERE clave_profesor = '$usuario'";
+				mysqli_query( $conexion, $sql );
+				if( mysqli_affected_rows( $conexion ) > 0 ){
+					echo "<script>mensajeExitoso( 'Bieen!', 'Se actualizó la cuenta del jefe de depatamento. Inicia sesión de nuevo por favor' );</script>";
+					header("Refresh:1; url=../admin/cerrar_sesion.php");
+				}
+				else{
+					echo "<script>mensajeError( 'Vaya!', 'No se realizaron cambios en la cuenta del jefe de depatamento.' );</script>";
+					header("Refresh:1; url=./inicio.php");
+				}
+				mysqli_close( $conexion );
+			}
+			else{
+				echo "<script>mensajeError( 'Upsss!', 'Verifica contraseñas ingresadas.' );</script>";
+				header("Refresh:1; url=./inicio.php");
+			}
 		}
 	} 
 	// FUNCION DEL SUBMIT PARA ACTUALIZAR AL PROFESOR
@@ -222,18 +241,27 @@
 	}
 	if(isset($_POST['btt_guardar_detalle_materia'])){
 		$id_materia_solicitada = $_POST['txt_clave'];
-		$status = -1;
-			if( isset($_POST['txt_status']) && $_POST['txt_status'] == '1' )
-				$status = 1;
-			else
-				$status = 0;
 		$id_profesor = $_POST['txt_carrera'];
 		$id_carrera = $_POST['txt_id_carrera'];
 		$nombre_carrera = $_POST['txt_nombre_carrera'];
 		$jefe_obj = new JefeModel; 
-		$jefe_obj->asignarProfesorAMateria($id_materia_solicitada, $id_profesor, $status, $id_carrera, $nombre_carrera);
+		$jefe_obj->asignarProfesorAMateria($id_materia_solicitada, $id_profesor, $id_carrera, $nombre_carrera);
 	}
 	/*$obj_semestre = new SemestreModel; 
 	$nombre_semestre = $obj_semestre->getSemestre( '1' );
 	echo $nombre_semestre;*/
+
+
+
+
+
+
+	if(isset($_POST['btt_configurar_contrasenia_jefe'])){
+		$user = $_POST['txt_clave'];
+		$contrasenia_1 = $_POST['txt_contrasenia'];
+		$contrasenia_2 = $_POST['txt_contrasenia_2'];
+		$jefe_obj = new JefeModel; 
+		$jefe_obj->actualizarContraseniaJefe($user, $contrasenia_1, $contrasenia_2);
+	}
+
 ?> 

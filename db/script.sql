@@ -345,3 +345,17 @@ SELECT
   JOIN MATERIAS 
   WHERE clave_carrera = '0' 
   GROUP BY MATERIAS_SOLICITADAS.id;
+
+
+
+
+CREATE TABLE subdirectores (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(40),
+  apellido_paterno VARCHAR(40),
+  apellido_materno VARCHAR(40),
+  email VARCHAR(360),
+  telefono VARCHAR(20),
+  contrasenia VARCHAR(20)
+);
+INSERT INTO subdirectores VALUES(NULL, 'SUB 1', "PAT", "MAT", 'subdirector@xd.com', '4736617');
