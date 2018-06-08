@@ -22,6 +22,9 @@
 						<a class="nav-link" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
 					</li>
 					<li class="nav-item"> 
+						<a class="nav-link" id="al*tas-tab" data-toggle="tab" href="#altas" role="tab" aria-controls="altas" aria-selected="false">Altas</a>
+					</li>
+					<li class="nav-item"> 
 						<a class="nav-link" id="areas-tab" data-toggle="tab" href="#areas" role="tab" aria-controls="areas" aria-selected="false">Areas</a>
 					</li>
 					<li class="nav-item"> 

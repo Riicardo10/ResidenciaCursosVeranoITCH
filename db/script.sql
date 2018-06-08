@@ -359,3 +359,18 @@ CREATE TABLE subdirectores (
   contrasenia VARCHAR(20)
 );
 INSERT INTO subdirectores VALUES(NULL, 'SUB 1', "PAT", "MAT", 'subdirector@xd.com', '4736617');
+
+
+
+CREATE TABLE montos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  creditos VARCHAR(40),
+  horas VARCHAR(40),
+  montos VARCHAR(40)
+);
+
+
+
+
+
+ALTER TABLE materias ADD horas_practicas INT;

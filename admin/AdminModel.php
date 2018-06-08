@@ -7,6 +7,26 @@
 </html>
 <?php 
 	class AdminModel { 
+		function getListaUsuariosCoordinadoresConDatos () { 
+			require '../conexion/conexion_mysqli.php';
+			$sql = "SELECT no_control_coordinador, contrasenia, nombre, apellido_paterno, apellido_materno, email, telefono FROM usuarios_coordinadores JOIN coordinadores WHERE no_control_coordinador = no_control;";
+			$result = $conexion->query($sql);
+			if ($result->num_rows > 0) {
+				return $result;
+			}
+			mysqli_close( $conexion );
+			return null;
+		}
+		function getListaUsuariosJefesConDatos () { 
+			require '../conexion/conexion_mysqli.php';
+			$sql = "SELECT clave, contrasenia, nombre, apellido_paterno, apellido_materno, email, telefono FROM usuarios_jefes_departamento JOIN jefes_departamento WHERE clave = clave_profesor;";
+			$result = $conexion->query($sql);
+			if ($result->num_rows > 0) {
+				return $result;
+			}
+			mysqli_close( $conexion );
+			return null;
+		}
 		function getListaUsuariosJefesDepartamento () { 
 			require '../conexion/conexion_mysqli.php';
 			$sql = "SELECT usuario, contrasenia FROM usuarios_jefes_departamento";
@@ -110,6 +130,43 @@
 				header("Refresh:2; url=../admin/inicio.php");
 			}
 		}
+		function agregarMonto ( $creditos, $horas, $monto ) {
+				require '../conexion/conexion_mysqli.php';
+				$sql = "INSERT INTO montos VALUES (NULL, '$creditos', '$horas' , '$monto')";
+				mysqli_query( $conexion, $sql );
+				if( mysqli_affected_rows( $conexion ) > 0 ){
+					echo "<script>mensajeExitoso( 'Bieen!', 'Se agregó nuevo monto' );</script>";
+					header("Refresh:1; url=../admin/inicio.php");
+				}
+				else{
+					echo "<script>mensajeError( 'Vaya!', 'No se registró.' );</script>";
+					header("Refresh:1; url=../admin/inicio.php");
+				}
+				mysqli_close( $conexion );
+		}
+		function eliminarMonto ( $id ) {
+				require '../conexion/conexion_mysqli.php';
+				$sql = "DELETE FROM montos WHERE id=$id";
+				mysqli_query( $conexion, $sql );
+				if( mysqli_affected_rows( $conexion ) > 0 ){
+					header("Refresh:0; url=../admin/inicio.php");
+				}
+				else{
+					echo "<script>mensajeError( 'Vaya!', 'No se elimino.' );</script>";
+					header("Refresh:1; url=../admin/inicio.php");
+				}
+				mysqli_close( $conexion );
+		}
+		function getListaMontos () { 
+			require '../conexion/conexion_mysqli.php';
+			$sql = "SELECT * FROM montos ORDER BY creditos";
+			$result = $conexion->query($sql);
+			if ($result->num_rows > 0) {
+				return $result;
+			}
+			mysqli_close( $conexion );
+			return null;
+		}
 	} 
 	// FUNCION DEL SUBMIT PARA ACTUALIZAR AL PROFESOR
 	if(isset($_POST['btt_actualizar'])){
@@ -121,8 +178,13 @@
     	} 
     	if(isset($_POST['btt_ingresar'])){
     		$usuario =  $_POST['txt_usuario'];
-		$contrasenia =  $_POST['txt_contrasenia'];
-		$admin_obj = new AdminModel; 
-		$admin_obj->iniciarSesion( $usuario, $contrasenia );
+			$contrasenia =  $_POST['txt_contrasenia'];
+			$admin_obj = new AdminModel; 
+			$admin_obj->iniciarSesion( $usuario, $contrasenia );
+    	}
+
+    	if(isset($_POST['btt_agregar_monto'])){
+			$admin_obj = new AdminModel; 
+			$admin_obj->agregarMonto( $_POST['txt_creditos'], $_POST['txt_horas'], $_POST['txt_monto'] );
     	}
 ?> 

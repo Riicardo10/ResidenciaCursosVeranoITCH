@@ -25,6 +25,7 @@
 					<th>Materia</th>
 					<th>Carrera</th>
 					<th>Créditos</th>
+					<th>HT / HP</th>
 					<th>Semestre</th>
 					<th></th>
 					<th></th>
@@ -38,6 +39,7 @@
 							<td> <?php echo $row['materia']; ?> </td>
 							<td> <?php echo $row['carrera']; ?> </td>
 							<td> <?php echo $row['creditos']; ?> </td>
+							<td> <?php echo "ht: " . $row['horas_teoricas'] . ' / hp: ' . $row['horas_practicas'] ; ?> </td>
 							<td> <?php echo $row['clave_semestre']; ?> </td>
 							<td>
 								<a class="btn btn-primary" href="../materias/actualizar.php?clave=<?php echo $row['clave']; ?>">Actualizar</a>
@@ -53,3 +55,4 @@
 		</table>
 	</div>
 </div>
+

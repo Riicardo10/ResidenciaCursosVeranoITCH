@@ -18,7 +18,9 @@
 						'materia' => $row['materia'],
 						'creditos' => $row['creditos'],
 						'clave_carrera' => $row['clave_carrera'],
-						'clave_semestre' => $row['clave_semestre']
+						'clave_semestre' => $row['clave_semestre'],
+						'horas_teoricas' => $row['horas_teoricas'],
+						'horas_practicas' => $row['horas_practicas']
 					);
 				}
 			} 
@@ -27,7 +29,7 @@
 		}
 		function getListaMaterias () { 
 			require '../conexion/conexion_mysqli.php';
-			$sql = "SELECT materias.clave, materias.materia, carreras.carrera, materias.creditos, materias.clave_semestre FROM materias JOIN semestres JOIN carreras WHERE materias.clave_carrera = carreras.clave AND materias.clave_semestre = semestres.clave ORDER BY carrera ASC, clave_semestre ASC;";
+			$sql = "SELECT materias.clave, materias.materia, carreras.carrera, materias.creditos, materias.clave_semestre, materias.horas_teoricas, materias.horas_practicas FROM materias JOIN semestres JOIN carreras WHERE materias.clave_carrera = carreras.clave AND materias.clave_semestre = semestres.clave ORDER BY carrera ASC, clave_semestre ASC;";
 			$result = $conexion->query($sql);
 			if ($result->num_rows > 0) {
 				return $result;
@@ -63,9 +65,9 @@
 			}
 			mysqli_close( $conexion );
 		}
-		function actualizarMateria ( $clave, $materia, $creditos, $carrera, $semestre ) {
+		function actualizarMateria ( $clave, $materia, $creditos, $carrera, $semestre, $ht, $hp ) {
 			require '../conexion/conexion_mysqli.php';
-			$sql = "UPDATE materias SET materia = '$materia', creditos = '$creditos', clave_carrera = '$carrera', clave_semestre = '$semestre' WHERE clave = '$clave'";
+			$sql = "UPDATE materias SET materia = '$materia', creditos = '$creditos', clave_carrera = '$carrera', clave_semestre = '$semestre', horas_teoricas = $ht, horas_practicas = $hp WHERE clave = '$clave'";
 			mysqli_query( $conexion, $sql );
 			if( mysqli_affected_rows( $conexion ) > 0 ){
 				echo "<script>mensajeExitoso( 'Bieen!', 'Se actualizó el registro.' );</script>";
@@ -73,13 +75,13 @@
 			}
 			else{
 				echo "<script>mensajeError( 'Vaya!', 'No se realizaron cambios en el registro.' );</script>";
-				header("Refresh:1; url=../admin/materias.php");
+				header("Refresh:1; url=../admin/inicio.php#materias");
 			}
 			mysqli_close( $conexion );
 		}
-		function agregarMateria ( $clave, $materia, $creditos, $clave_carrera, $clave_semestre ) {
+		function agregarMateria ( $clave, $materia, $creditos, $clave_carrera, $clave_semestre, $ht, $hp ) {
 			require '../conexion/conexion_mysqli.php';
-			$sql = "INSERT INTO materias values ( '$clave', '$materia', $creditos, '$clave_carrera', '$clave_semestre')";
+			$sql = "INSERT INTO materias values ( '$clave', '$materia', $creditos, '$clave_carrera', '$clave_semestre', $ht, $hp)";
 			mysqli_query( $conexion, $sql );
 			if( mysqli_affected_rows( $conexion ) > 0 ){
 				echo "<script>mensajeExitoso( 'Bieen!', 'Se agregó el nuevo registro.' );</script>";
@@ -100,8 +102,10 @@
 		$carrera =  $_POST['txt_carrera'];
 		$creditos =  $_POST['txt_creditos'];
 		$semestre =  $_POST['txt_semestre'];
+		$ht =  $_POST['txt_horas_teoricas'];
+		$hp =  $_POST['txt_horas_practicas'];
 		$materia_obj = new MateriaModel; 
-		$materia_obj->actualizarMateria( $clave, $materia, $creditos, $carrera, $semestre );
+		$materia_obj->actualizarMateria( $clave, $materia, $creditos, $carrera, $semestre, $ht, $hp );
     	} 
 	// FUNCION DEL SUBMIT DE DAR DE BAJA AL PROFESOR
 	if(isset($_POST['btt_eliminar'])){
@@ -116,8 +120,11 @@
 		$carrera =  $_POST['txt_carrera'];
 		$creditos =  $_POST['txt_creditos'];
 		$semestre =  $_POST['txt_semestre'];
+		$ht =  $_POST['txt_horas_teoricas'];
+		$hp =  $_POST['txt_horas_practicas'];
+
 		$materia_obj = new MateriaModel; 
-		$materia_obj->agregarMateria( $clave, $materia, $creditos, $carrera, $semestre );
+		$materia_obj->agregarMateria( $clave, $materia, $creditos, $carrera, $semestre, $ht, $hp );
 	}
 	/*$obj_semestre = new SemestreModel; 
 	$nombre_semestre = $obj_semestre->getSemestre( '1' );

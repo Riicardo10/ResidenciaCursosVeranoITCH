@@ -64,6 +64,17 @@
 									<input type="number" name="txt_creditos" style="width: 200px; font-size: 20px" min="1" max="10" required>
 								</div>
 							</div>
+							<div class="row form-group text-center">
+								<div class="col-xs-2"></div>
+								<div class="col-xs-4">
+									<label for="txt_horas_teoricas" style="text-align: left; font-size: 20px;width: 200px;">Horas teoricas:</label>
+									<input type="number" name="txt_horas_teoricas" style="width: 200px; font-size: 20px" required>
+								</div>
+								<div class="col-xs-4">
+									<label for="txt_horas_practicas" style="text-align: left; font-size: 20px;width: 200px;">Horas practicas:</label>
+									<input type="number" name="txt_horas_practicas" style="width: 200px; font-size: 20px" required>
+								</div>
+							</div>
 							<div class="row form-group text-center" style="margin-top: 2%">
 								<div class="form-group col-lg-6 col-lg-offset-3 right text-center"> 
 									<a href="../admin/inicio.php#materias" class="btn btn-danger" style="width: 150px">Cancelar</a>

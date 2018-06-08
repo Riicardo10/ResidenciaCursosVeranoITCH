@@ -12,3 +12,16 @@ coordinador de estudiantes
 jefes de academia
 	seleccionan al maestro para cada materia
 
+
+
+
+CREDITOS		HORAS		Monto
+4						60				840
+5						75				1050
+6						90				1260
+10						150				-----
+
+
+
+ADMIN> MATERIAS> POR CARRERA
+PDF DE MATERIAS SOLICITADAS
